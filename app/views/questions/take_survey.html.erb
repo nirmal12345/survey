@@ -1,0 +1,28 @@
+<h1>Survey name : <%= Surveyname.find(params[:surveyname_id]).description-%></h1>
+
+<h1>Take Question</h1>
+<%= form_for @answer, :url=> surveyname_answers_path do -%>
+  <% count = 1 -%>
+  <% @surveyquestions.each do|question| -%>
+    <% if question.questiontype_id == 1%>
+      Question <%= count -%>: <%= question.description%><br>
+      Answer: <br><%= text_area_tag "answers[][#{question.id}]","",:style=>'width:400px;, height:60px' -%><br><br>
+    <% end -%>
+    <% if question.questiontype_id == 2%>
+      Question <%= count -%>: <%= question.description%><br>
+      Answer: <%= text_field_tag "answers[][#{question.id}]" -%> <span style="color:red;">(*Enter numeric value)</span> <br><br>
+      
+    <% end -%>
+    <% if question.questiontype_id == 3%>
+      Question <%= count -%>: <%= question.description%><br>
+      Answer: <%= text_field_tag "answers[][#{question.id}]", nil,:class=>"datepicker" -%> <span style="color:red;">(*select date from datepicker)</span><br><br>    
+      
+    <% end -%>
+    <% count = count +1 -%>
+  <% end -%>
+<%= submit_tag "Submit" -%>
+<% end -%>
+
+<script type="text/javascript">
+  $( ".datepicker" ).datepicker({ dateFormat: 'dd-mm-yy' });
+</script>

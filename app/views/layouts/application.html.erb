@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Survey</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<table width="100%"  border="0">
+  <tr>
+    <td colspan="2" style="background-color:#CC99FF;">
+      <h1>Survey Website
+        <span style="float:right; color:green">
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        <% end %>
+        </span>      
+      </h1>
+
+        <span id="user_nav" style="float:right;">
+          <% if current_user %>
+            Logged in as <%= current_user.name %>.
+            <%= link_to "Log out", log_out_path %>
+          <% else %>
+            <%= link_to "Sign up", sign_up_path %> or
+            <%= link_to "Log in", log_in_path, :id=>'login' %>
+          <% end %>
+        </span>  
+    </td>
+  </tr>
+  <tr valign="top">
+    <td style="background-color:#FFCCFF;
+                  width:100px;text-align:top;">
+      <b>Main Menu</b><br /><br />
+      <% if current_user %>
+        <% if current_user.role_id == 1 || current_user.role_id == 2 -%>
+          ==><%= link_to "Surveys", surveynames_path%>
+        <% else %>
+          ==> No Menus
+        <% end %>
+      <% else %>
+        ==> No Menus
+      <% end %>
+    </td>
+    <td style="background-color:#eeeeee;height:200px;
+                  width:300px;text-align:top;">
+<%= yield %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="background-color:#CC99FF;">
+        <center>
+          place to take survey.
+        </center>
+    </td>
+  </tr>
+</table>
+
+
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<h1>Survey name : <%= Surveyname.find(params[:surveyname_id]).description-%></h1>
+
+<h1>Create Question</h1>
+<%= form_for @question, :url=> surveyname_questions_path do |f| -%>
+
+  <% if @question.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @question.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= render :partial => "form", :object => f -%>
+  <%= f.submit "Create" -%>
+<% end -%>

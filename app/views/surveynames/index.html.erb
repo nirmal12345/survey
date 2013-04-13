@@ -1,0 +1,49 @@
+<h1>Surveys Listing</h1>
+<% if @current_user_roleid == 1 -%>
+<% unless @surveynames.blank? -%>
+  <table border='1'>
+    <tr>
+      <th>Survey Name</th>
+      <th>Questions</th>
+      <th>Responses</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+      <% @surveynames.each do|surveyname| -%>
+      <tr>
+        <td><%= surveyname.description-%></td>
+        <td><%= link_to "Questions", surveyname_questions_path(surveyname.id) -%></td>
+        <td><%= surveyname.survey_response_count(surveyname.id)-%></td>
+        <td><%= link_to "Edit", edit_surveyname_path(surveyname) -%></td>
+        <td><%= link_to "Delete", surveyname, :confirm => "Are you sure?", :method=>:delete -%>
+      </tr>
+      <% end -%>
+    
+  </table>
+  <%= will_paginate @surveynames %>
+<% else -%>
+  ==> No surveys found.
+<% end -%>
+<br>
+<%= link_to "Create survey", new_surveyname_path -%>
+<% else -%>
+<% unless @surveynames.blank? -%>
+  <table border='1'>
+    <tr>
+      <th>Survey Name</th>
+      <th></th>
+    </tr>
+      <% @surveynames.each do|surveyname| -%>
+      <tr>
+        <td><%= surveyname.description-%></td>
+        <td><%= link_to "Take Survey", take_survey_surveyname_questions_path(surveyname.id) -%></td>
+      </tr>
+      <% end -%>
+    
+  </table>
+  <%= will_paginate @surveynames %>
+<% else -%>
+  ==> No surveys found.
+<% end -%>
+<% end -%>
+

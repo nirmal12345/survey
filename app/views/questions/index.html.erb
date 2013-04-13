@@ -1,0 +1,28 @@
+
+<h1>Survey name : <%= Surveyname.find(params[:surveyname_id]).description-%></h1>
+<h1>Questions Listing</h1>
+<% unless @surveyquestions.blank? -%>
+  <table border='1'>
+    <tr>
+      <th>Question Name</th>
+      <th>Question Type</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+      <% @surveyquestions.each do|question| -%>
+      <tr>
+        <td><%= question.description -%></td>
+        <td><%= question.question_type_name(question)-%></td>
+        <td><%= link_to "Edit", edit_surveyname_question_path(question.surveyname_id,question) -%></td>
+        <td><%= link_to "Delete", surveyname_question_path(question.surveyname_id,question), :confirm => "Are you sure?", :method=>:delete -%>
+      </tr>
+      <% end -%>
+    
+  </table>
+<% else -%>
+  ==> No questions found for the survey.
+<% end -%>
+<br><br>
+<%= link_to "Create question", new_surveyname_question_path -%> |
+<%= link_to "Surveys", surveynames_path -%>
+

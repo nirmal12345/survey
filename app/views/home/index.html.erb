@@ -1,0 +1,15 @@
+<% if @surveynames.blank? -%>
+  No Survey found
+<% else -%>
+   <table border='1'>
+    <tr>
+      <th>Survey Name</th>
+    </tr>
+      <% @surveynames.each do|surveyname| -%>
+      <tr>
+        <td><%= surveyname.description-%></td>
+      </tr>
+      <% end -%>
+  </table>
+<% end -%>
+<%= will_paginate @surveynames %>

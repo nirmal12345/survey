@@ -1,0 +1,5 @@
+<h1>Edit Question</h1>
+<%= form_for @question, :url=> surveyname_question_path(@question.surveyname.id,@question) do |f| -%>
+  <%= render :partial => "form", :object => f -%>
+  <%= f.submit "Update" -%>
+<% end -%>

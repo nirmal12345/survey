@@ -1,0 +1,16 @@
+<h1>Create survey</h1>
+<%= form_for @surveyname do |f| -%>
+  <% if @surveyname.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @surveyname.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= render :partial => "form", :object => f -%>
+  <%= f.submit "Create" -%>
+<% end -%>

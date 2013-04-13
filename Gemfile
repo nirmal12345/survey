@@ -4,11 +4,18 @@ gem 'rails', '3.2.13.rc1'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
+group :production do
+  gem 'mysql'
+end
 
-gem 'mysql'
+group :development do
+  gem 'mysql'
+end
+
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'will_paginate'
 gem "rb-readline", "~> 0.4.2"
+
 group :test do
   gem 'capybara', '~> 2.0.2'
   gem 'capybara-email', '~> 2.0.2'

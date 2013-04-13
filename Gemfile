@@ -8,7 +8,7 @@ gem 'rails', '3.2.13.rc1'
 gem 'mysql'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'will_paginate'
-
+gem "rb-readline", "~> 0.4.2"
 group :test do
   gem 'capybara', '~> 2.0.2'
   gem 'capybara-email', '~> 2.0.2'
